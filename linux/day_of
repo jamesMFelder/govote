@@ -1,0 +1,1 @@
+[[ -e "$DIRSTACK/common/voting.jpg" ]] && notify-send "Vote today" --icon ${DIRSTACK}/common/voting.jpg "Today is the day you are voting!"

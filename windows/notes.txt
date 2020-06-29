@@ -1,0 +1,2 @@
+To add a notification on Windows: create a taskbar icon, mess with the registry?, show the notification(, delete the icon).
+More information here: https://docs.microsoft.com/en-us/windows/win32/shell/notification-area

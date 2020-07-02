@@ -1,0 +1,3 @@
+at
+libnotify
+bash > 5.0

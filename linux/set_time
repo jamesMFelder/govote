@@ -1,0 +1,8 @@
+#!/bin/bash
+#Assert that all the variables exist.
+if [[ -z "$title" || -z "$body" || -z $"time" ]]; then
+	./send_error "\$title, \$body, and/or \$time were not set"
+	exit 1
+fi
+#Schedule an at command at the time to send a notification with the title and body and preset icon and save the job id to atjid
+echo "notify-send \"${title}\" --icon /home/james/govote/linux/common/voting.jpg \"${body}\"" | at ${time} |& sed -n 2p | cut -d ' ' -f 2 > atjid

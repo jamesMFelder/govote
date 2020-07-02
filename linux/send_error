@@ -1,0 +1,3 @@
+#!/bin/bash
+#Log the error and print on stderr.
+echo "We are sorry that govote encountered this error. Please email ${email:-james.m.felder@gmail.com} or file a bug https://github.com/JamesMFelder/govote and say what you were doing that caused $@" | logger -s

@@ -1,0 +1,25 @@
+#!/bin/bash
+#read the job id from file
+jid=$(cat atjid)
+#assert that the file is not empty
+if [[ -z "$jid" ]]; then
+	./send_error "cancel_time run while there are is no job for govote to remind you of."
+	exit 1
+#and that it is an integer
+elif [[ ! "$jid" =~ ^-?[0-9]+$ ]]; then
+	./send_error "atjid to not be '$jid' instead of an integer."
+	echo "" > atjid
+	exit 1
+#and that it is positive
+elif (( "$jid" <0 )); then
+	./send_error "atjid to not be '$jid' instead of an instead of a positive number or zero."
+	echo "" > atjid
+	exit 1
+else
+#try to cancel the job or send an error
+	atrm "$jid" && echo "" > atjid && exit 0
+	./send_error "atjid not to be a valid at job(did you manually cancel it)?"
+	exit 2
+fi
+#note that in every case the atjid file is emptied so that the error does not repeat
+#also note that if it it has a decimal point, has a digit not found in base ten(if it's in hexadecimal), or if it is not a number, I catch it with the same elif statement.

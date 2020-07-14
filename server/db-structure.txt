@@ -1,0 +1,27 @@
+#Just a text file showing the format of the database,\
+#allowing anyone to quickly see it without having to open it in a sqlite database browser
+#Note that I have only commented on this where it is not repetitive. I can be convinced to do otherwise
+database.db
+	City/Towns
+		"Primary Key"	INTEGER UNIQUE, #is how the city is identified
+		"Name"	TEXT NOT NULL,
+		"Region"	TEXT, #is the name of the region it is in
+		"Region-pk"	INTEGER, #is the primary key of the region(also the stable way to identify it)
+		"Country"	TEXT NOT NULL, #is the country it is in
+		"Country-pk"	INTEGER NOT NULL, #same as "Region-pk"
+		"Date_next_vote"	TEXT NOT NULL, #when the next election is
+		"Source_url"	TEXT NOT NULL, #where the information was fact-checked from
+	Regions
+		"Primary Key"	INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
+		"Name"	TEXT NOT NULL UNIQUE,
+		"Greater Region"	TEXT, #allows nesting of regions
+		"Greater Region-pk"	INTEGER,
+		"Country"	TEXT NOT NULL,
+		"Country-pk"	INTEGER NOT NULL,
+		"Date_next_vote"	TEXT NOT NULL,
+		"Source_url"	TEXT NOT NULL
+	Countries
+		"Primary Key"	INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
+		"Name"	TEXT NOT NULL UNIQUE,
+		"Date_next_vote"	INTEGER NOT NULL,
+		"Source_URL"	TEXT NOT NULL

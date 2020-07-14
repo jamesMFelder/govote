@@ -1,7 +1,0 @@
-#!/bin/bash
-
-[[ -n "$country" ]] || exit 1
-
-[[ -e database.db ]] || exit 2
-
-sqlite3 --column database.db "SELECT Irregular FROM \"When_vote\" WHERE \"Primary Key\" = (SELECT \"When_vote ptr\" FROM Countries WHERE Name = \"$country\")"

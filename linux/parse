@@ -1,0 +1,4 @@
+#!/bin/bash
+[[ -z "$STATE_ABBRV" ]] && { echo "\$STATE_ABBRV is not set. Please set it to a state abriviateion." >&2 && exit 1 ;}
+[[ -z $(echo "$STATE_ABBRV" | grep -F -f state_abrv.list) ]]&& { echo "\$STATE_ABBRV is not a state abriviation. Please set it to a state abriviateion." >&2 && exit 1 ;}
+curl -s https://www.usvotefoundation.org/vote/state-elections/state-election-dates-deadlines.htm?stateName=$STATE_ABBRV | grep "col-xs-12 election-title" | sed -f parse.sed
